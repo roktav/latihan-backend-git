@@ -1,12 +1,24 @@
-// index.ts
+import express, { Request, Response } from 'express';
 
-// Function to greet a user
-function greetUser (name: string): string {
-    return `Hello, ${name}! Welcome to our TypeScript application.`;
-}
+const app = express();
+const port = 3000;
 
-// Main execution
-const userName: string = "Alice";
-const greetingMessage: string = greetUser (userName);
+app.use(express.json());
 
-console.log(greetingMessage);
+// Endpoint untuk register user
+app.post('/register', (req: Request, res: Response) => {
+    const { username, password } = req.body;
+    // Logika untuk register user
+    res.send('User registered');
+});
+
+// Endpoint untuk login user
+app.post('/login', (req: Request, res: Response) => {
+    const { username, password } = req.body;
+    // Logika untuk login user
+    res.send('User logged in');
+});
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
